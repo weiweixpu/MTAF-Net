@@ -5,7 +5,7 @@ This is a PyTorch implementation of MTAF-Net proposed by our paper "MTAF-Net: Mu
 ## Requirements
 Our models are trained and tested in the environment of PyTorch 1.9.1, NVIDIA NVIDIA 3090 GPU, CUDA 11.1. 
 
-## datasets
+## Datasets
 
 ### Data available 
 The data used in this study includes the MRI data and IDH genomic information. MRI data are derived from [BraTS 2020](https://ipp.cbica.upenn.edu/) and [The Cancer Imaging Archive](https://www.cancerimagingarchive.net/), and the corresponding genomic information is from [The Cancer Genome Atlas](https://portal.gdc.cancer.gov/). We have provided the name mapping between BraTS 2020 and TCIA, which can been found in the data directory "MTAF-Net/data/".  
