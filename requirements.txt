@@ -1,0 +1,17 @@
+# pip install -r requirements.txt
+# interpreter
+# python=3.8.10
+
+# site-packages
+Pillow==9.4.0
+SimpleITK==2.3.1
+imageio==2.27.0
+matplotlib==3.4.3
+numpy==1.24.1
+pandas==1.5.2
+scikit-learn==1.2.0
+scikit-image==0.20.0
+requests==2.23.0
+scipy==1.9.0
+torch==1.9.1
+torchvision==0.10.1
