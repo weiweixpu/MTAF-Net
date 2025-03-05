@@ -57,7 +57,7 @@ def main():
     
     model = MTAF3D().cuda()
     dict_model = {'en': model}
-    load_file = os.path.join("./trails", args.experiment, args.test_date, args.test_file)
+    load_file = os.path.join("./trails", args.test_file)
 
     if os.path.exists(load_file):
         checkpoint = torch.load(load_file)

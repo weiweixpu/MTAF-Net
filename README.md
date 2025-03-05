@@ -45,6 +45,10 @@ Datasets with the following folder structure.
 ```bash
 python3 train.py 
 ```
+## model Weight
+```bash
+MTAF-Net/trails/best_network.pth.tar
+```
 ## Testing the model
 ```bash
 python3 test.py 
