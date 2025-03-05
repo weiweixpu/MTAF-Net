@@ -399,7 +399,7 @@ def hd(result, reference, voxelspacing=None, connectivity=1):
     return hd
 
 
-def hausdorff_distance(output, target, voxelspacing=None, connectivity=1, percentile=95):
+def hausdorff_distance(result, reference, voxelspacing=None, connectivity=1, percentile=95):
     """
     95th percentile of the Hausdorff Distance.
 
@@ -442,8 +442,8 @@ def hausdorff_distance(output, target, voxelspacing=None, connectivity=1, percen
     This is a real metric. The binary images can therefore be supplied in any order.
     """
 
-    hd1 = __surface_distances(output, target, voxelspacing, connectivity)
-    hd2 = __surface_distances(target, output, voxelspacing, connectivity)
+    hd1 = __surface_distances(result, reference, voxelspacing, connectivity)
+    hd2 = __surface_distances(reference, result, voxelspacing, connectivity)
     hd95 = np.percentile(np.hstack((hd1, hd2)), percentile)
     return hd95
 
