@@ -442,10 +442,8 @@ def hausdorff_distance(output, target, voxelspacing=None, connectivity=1, percen
     This is a real metric. The binary images can therefore be supplied in any order.
     """
 
-    # output = convert_to_numpy(output, dtype=torch.Tensor)
-    # target = convert_to_numpy(target, dtype=torch.Tensor)
     hd1 = __surface_distances(output, target, voxelspacing, connectivity)
-    hd2 = __surface_distances(output, target, voxelspacing, connectivity)
+    hd2 = __surface_distances(target, output, voxelspacing, connectivity)
     hd95 = np.percentile(np.hstack((hd1, hd2)), percentile)
     return hd95
 
