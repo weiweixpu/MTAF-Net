@@ -46,6 +46,7 @@ Datasets with the following folder structure.
 python3 train.py 
 ```
 ## model Weight
+[MTAF-Net](https://huggingface.co/WeiWei-XPU/best_network) 
 ```bash
 MTAF-Net/trails/best_network.pth.tar
 ```
