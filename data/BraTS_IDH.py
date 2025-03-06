@@ -130,70 +130,6 @@ class Random_intencity_shift(object):
         return {'image': image, 'label': label}
 
 
-class Random_rotate(object):
-    def __call__(self, sample):
-        image = sample['image']
-        label = sample['label']
-
-        angle = round(np.random.uniform(-10, 10), 2)
-        image = ndimage.rotate(image, angle, axes=(0, 1), reshape=False)
-        label = ndimage.rotate(label, angle, axes=(0, 1), reshape=False)
-
-        return {'image': image, 'label': label}
-
-
-class BrightnessTransform(object):
-
-    def __init__(self, mu, sigma, per_channel=True, p_per_sample=1., p_per_channel=1.):
-        """
-        Augments the brightness of data. Additive brightness is sampled from Gaussian distribution with mu and sigma
-        :param mu: mean of the Gaussian distribution to sample the added brightness from
-        :param sigma: standard deviation of the Gaussian distribution to sample the added brightness from
-        :param per_channel: whether to use the same brightness modifier for all color channels or a separate one for
-        each channel
-        :param data_key:
-        :param p_per_sample:
-        """
-        self.p_per_sample = p_per_sample
-        self.mu = mu
-        self.sigma = sigma
-        self.per_channel = per_channel
-        self.p_per_channel = p_per_channel
-
-    def __call__(self, sample):
-        data, label = sample['image'], sample['label']
-
-        for b in range(data.shape[0]):
-            if np.random.uniform() < self.p_per_sample:
-                data[b] = augment_brightness_additive(data[b], self.mu, self.sigma, self.per_channel,
-                                                      p_per_channel=self.p_per_channel)
-
-        return {'image': data, 'label': label}
-
-
-def augment_brightness_additive(data_sample, mu:float, sigma:float , per_channel:bool=True, p_per_channel:float=1.):
-    """
-    data_sample must have shape (c, x, y(, z)))
-    :param data_sample:
-    :param mu:
-    :param sigma:
-    :param per_channel:
-    :param p_per_channel:
-    :return:
-    """
-    if not per_channel:
-        rnd_nb = np.random.normal(mu, sigma)
-        for c in range(data_sample.shape[0]):
-            if np.random.uniform() <= p_per_channel:
-                data_sample[c] += rnd_nb
-    else:
-        for c in range(data_sample.shape[0]):
-            if np.random.uniform() <= p_per_channel:
-                rnd_nb = np.random.normal(mu, sigma)
-                data_sample[c] += rnd_nb
-    return data_sample
-
-
 def augment_gaussian_noise(data_sample, noise_variance=(0, 0.1)):
     if noise_variance[0] == noise_variance[1]:
         variance = noise_variance[0]
@@ -292,9 +228,7 @@ class ToTensor(object):
 def transform(sample):
     trans = transforms.Compose([
         Random_Crop(),
-        Random_rotate(),
         Random_Flip(),
-        BrightnessTransform(0, 0.1, True, 0.15, 0.5),
         ContrastAugmentationTransform(p_per_sample=0.15),
         Random_intencity_shift(),
         GaussianNoise(p=0.1),
