@@ -23,7 +23,7 @@ parser.add_argument('--experiment', default='MTAF', type=str, help='experiment n
 
 parser.add_argument('--test_date', default='2023-08-20', type=str, help='experiment data')
 
-parser.add_argument('--test_file', default='best_network.pth.tar', type=str, help='model directory name')
+parser.add_argument('--test_file', default='MTAF_Net.pth.tar', type=str, help='model directory name')
 
 parser.add_argument('--use_TTA', default=True, type=bool, help='Whether to use augmentation during testing')
 
