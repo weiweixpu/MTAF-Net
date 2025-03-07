@@ -48,7 +48,7 @@ python3 train.py
 ## model Weight
 The model weights of [MTAF-Net](https://huggingface.co/WeiWei-XPU/best_network/tree/main) in our paper can be downloaded from Hugging Face and placed in the following path after downloading.
 ```bash
-MTAF-Net/trails/best_network.pth.tar
+MTAF-Net/trails/MTAF_Net.pth.tar
 ```
 ## Testing the model
 ```bash
