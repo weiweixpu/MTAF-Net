@@ -252,8 +252,8 @@ def validate_softmax(
                     for frame in range(T):
                         if not os.path.exists(os.path.join(visual, patient_ID)):
                             os.makedirs(os.path.join(visual, patient_ID))
-                        imageio.imwrite(os.path.join(visual, patient_ID, str(frame)+'.png'), Snapshot_img[frame, ::-1, :])
-
+                        # imageio.imwrite(os.path.join(visual, patient_ID, str(frame)+'.png'), Snapshot_img[frame, ::-1, :])
+                        imageio.imwrite(os.path.join(visual, patient_ID, str(frame)+'.png'), np.repeat(Snapshot_img[frame, ::-1, :], 3, axis=2))
     if isinstance(model, dict):
         print("--------------------------------seg evaluation report---------------------------------------")
         mean_dice = sum(dice)/len(dice)
